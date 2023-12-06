@@ -40,5 +40,19 @@ class CommunicationBD:
         self.__conn.commit()
 
     def insert(self, info: list):
-        self.__curs.execute("INSERT INTO players (name, gp, g, a, pts, pim, diff) VALUES(%s,%s,%s,%s,%s,%s, %s)", info)
+        if not isinstance(info[0], list):
+            self.__curs.execute("INSERT INTO players (name, gp, g, a, pts, pim, diff) VALUES(%s,%s,%s,%s,%s,%s, %s)", info)
+            self.__conn.commit()
+        else:
+            for elem in info:
+                self.__curs.execute("INSERT INTO players (name, gp, g, a, pts, pim, diff) VALUES(%s,%s,%s,%s,%s,%s, %s)", elem)
+                self.__conn.commit()
+
+    def select(self) -> list:
+        self.__curs.execute("SELECT * FROM players")
+        return self.__curs.fetchall()
+    
+    def delete(self):
+        self.__curs.execute("DELETE FROM players")
         self.__conn.commit()
+        

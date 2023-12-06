@@ -34,6 +34,7 @@ def add_player_to_database(info: str) -> str:
     try:
         bd = CommunicationBD()
         bd.connection_bd()
+        bd.delete()
         bd.insert(info)
     except Exception as e:
         return (traceback.format_exception(e))
@@ -43,5 +44,12 @@ def add_player_to_database(info: str) -> str:
     print(info)
     return "Success"
 
-def fetch_player_to_database():
-    print("Get ready to receive player")
+def fetch_player_from_database() -> str:
+    try:
+        bd = CommunicationBD()
+        bd.connection_bd()
+        return bd.select()
+    except Exception as e:
+        return (traceback.format_exception(e))
+    finally:
+        bd.close_db()
