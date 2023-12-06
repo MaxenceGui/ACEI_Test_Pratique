@@ -6,7 +6,7 @@ app = f.Flask(__name__)
 app.secret_key = "ACEI_TEST"
 
 def start_flask():
-    app.run(debug=True, host="10.10.10.10", port="5000")
+    app.run(debug=True, host="127.0.0.1", port="5000")
 
 @app.route('/add_players', methods=['POST'])
 def add_player_to_database():
