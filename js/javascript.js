@@ -7,7 +7,18 @@ const fetch_players = () =>{
     })
     .then(response => response.json())
     .then(response=> {
-        console.log(response)
+        
+        for(let i = 0; i < response.length; i++){
+            let div = document.createElement("div")
+            let player = ""
+            for(let j = 0; j < response[i].length; j++){
+                if( j !=0 ){
+                    player += response[i][j] + " "
+                }
+            }
+            div.innerHTML = player
+            document.getElementsByClassName("table")[0].appendChild(div)
+        }
     })
 }
 

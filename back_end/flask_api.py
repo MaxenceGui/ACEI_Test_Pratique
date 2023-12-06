@@ -69,6 +69,7 @@ def delete_list() -> str:
         bd = CommunicationBD()
         bd.connection_bd()
         bd.delete()
+        return "Success"
     except Exception as e:
         return (traceback.format_exception(e))
     finally:

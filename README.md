@@ -1,2 +1,5 @@
 # ACEI_Test_Pratique
-Test pratique pour entrevue de stage avec ACEI
+Technical test for interview with ACEI.
+
+## Project
+The project is a simple web site where you can send your data to a postgresql server and retrieve them.
