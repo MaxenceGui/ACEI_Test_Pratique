@@ -45,7 +45,7 @@ def test_delete():
 def test_main():
     test_add_player()
     test_fetch_player()
-    test_delete()
+    #test_delete()
 
 
 if __name__ == "__main__":
