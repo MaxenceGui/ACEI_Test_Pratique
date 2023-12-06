@@ -25,7 +25,7 @@ def test_add_player():
     print(variable)
 
 def test_fetch_player():
-    json_data =json.dumps("something")
+    json_data = json.dumps("something")
     data = json_data.encode('utf-8')
     headers = {'Content-Type': 'application/json'}
     request = urllib.request.Request(f"http://{IP_ADDRESS}:{PORT}/fetch_players", data=data, headers=headers)
@@ -33,9 +33,16 @@ def test_fetch_player():
     variable = json.loads(response.read())
     print(variable)
 
+def test_delete():
+    request = urllib.request.Request(f"http://{IP_ADDRESS}:{PORT}/delete_list")
+    response = urllib.request.urlopen(request)
+    variable = json.loads(response.read())
+    print(variable)
+
 def test_main():
     #test_add_player()
-    test_fetch_player()
+    #test_fetch_player()
+    test_delete()
 
 
 if __name__ == "__main__":

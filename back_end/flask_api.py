@@ -19,6 +19,7 @@ def add_player_to_database():
             result = add_player_to_database(info)
             return json.dumps(result)
     except Exception as e:
+        print(traceback.format_exception(e))
         return f.jsonify({'error': str(e)})
     
 @app.route('/fetch_players', methods=['POST'])
@@ -30,18 +31,27 @@ def fetch_player_from_database():
     except Exception as e:
         return f.jsonify({'error': str(e)})
     
+@app.route('/delete_list', methods=['POST'])
+def delete_list():
+    try:
+        if f.request.method == 'POST':
+            result = delete_list()
+            return json.dumps(result)
+    except Exception as e:
+        return f.jsonify({'error': str(e)})
+    
 def add_player_to_database(info: str) -> str:
     try:
+        print(info)
         bd = CommunicationBD()
         bd.connection_bd()
-        bd.delete()
         bd.insert(info)
     except Exception as e:
+        print(traceback.format_exception(e))
         return (traceback.format_exception(e))
     finally:
         bd.close_db()
 
-    print(info)
     return "Success"
 
 def fetch_player_from_database() -> str:
@@ -49,6 +59,16 @@ def fetch_player_from_database() -> str:
         bd = CommunicationBD()
         bd.connection_bd()
         return bd.select()
+    except Exception as e:
+        return (traceback.format_exception(e))
+    finally:
+        bd.close_db()
+
+def delete_list() -> str:
+    try:
+        bd = CommunicationBD()
+        bd.connection_bd()
+        bd.delete()
     except Exception as e:
         return (traceback.format_exception(e))
     finally:
