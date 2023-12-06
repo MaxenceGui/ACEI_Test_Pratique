@@ -23,4 +23,9 @@ The web site is essentially just a index.html file where the user can input the 
 - To use this project, you will need to have a working postgresql environnement install, such as pgadmin. You can setup the database with your data in the CommunicationBD.py files.
 - Also, a CORS blocker will be needed to let javascript communicate with Flask.
 
+### Test
+The test.py contains three functions to test directly the server.
+- One of them create five new players
+- One of them retrieve the players
+- One of them reset the list 
 
