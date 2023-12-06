@@ -1,5 +1,8 @@
 import flask as f
 import json
+import traceback
+
+from back_end.CommunicationBD import CommunicationBD
 
 app = f.Flask(__name__)
 
@@ -26,6 +29,19 @@ def fetch_player_from_database():
             return json.dumps(result)
     except Exception as e:
         return f.jsonify({'error': str(e)})
+    
+def add_player_to_database(info: str) -> str:
+    try:
+        bd = CommunicationBD()
+        bd.connection_bd()
+        bd.insert(info)
+    except Exception as e:
+        return (traceback.format_exception(e))
+    finally:
+        bd.close_db()
 
-def add_player_to_database():
+    print(info)
+    return "Success"
+
+def fetch_player_to_database():
     print("Get ready to receive player")
